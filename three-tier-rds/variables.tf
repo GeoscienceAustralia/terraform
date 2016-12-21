@@ -33,12 +33,8 @@ variable "asg_max" {
 variable "asg_desired" {
   default = "1"
 }
-# Amazon Linux AMI
-# Most recent as of 2015-12-02
 variable "amis" {
   default = {
-    us-east-1 = "ami-60b6c60a"
-    us-west-2 = "ami-f0091d91"
     ap-southeast-2 = "ami-4d3b062e"
   }
 }

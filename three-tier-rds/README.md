@@ -6,8 +6,11 @@ This is a demo of using Terraform (https://terraform.io) to provision a sample A
 WARNING:  LAUNCHING THIS WILL COST YOU MONEY
 
 # Before You Begin
-If you haven't already configured the AWS CLI, or another SDK, on the machine where you will be running Terraform you should follow these instructions to setup the AWS CLI and create a credential profile which Terraform will use for authentication:  
-http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html
+1. If you haven't already configured the AWS CLI, or another SDK, on the machine where you will be running Terraform you should follow these instructions to setup the AWS CLI and create a credential profile which Terraform will use for authentication [download here](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html) 
+2. Install terraform ```brew install terraform``` on OSX or download from the [terraform website](https://www.terraform.io/downloads.html)
+
+# Configure
+1. Set your variables in the variables.tf file
 
 # Launching
 1. terraform get

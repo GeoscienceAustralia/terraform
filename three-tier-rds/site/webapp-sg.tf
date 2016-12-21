@@ -10,10 +10,16 @@
 # License for the specific language governing permissions and limitations under the License.
 resource "aws_security_group" "webapp_http_inbound_sg" {
   name = "demo_webapp_http_inbound"
-  description = "Allow HTTP from Anywhere"
+  description = "Allow HTTP/S from Anywhere"
   ingress {
     from_port = 80
     to_port = 80
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    from_port = 443
+    to_port = 443
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }

@@ -49,7 +49,7 @@ resource "aws_eip" "nat" {
 }
 
 #
-# Public Subnet
+# Public Subnet a
 #
 resource "aws_subnet" "demo_public" {
   vpc_id = "${aws_vpc.default.id}"
@@ -80,21 +80,21 @@ resource "aws_route_table_association" "demo_public" {
 }
 
 #
-# Private Subnet
+# Private Subnet a
 #
-resource "aws_subnet" "demo_private" {
+resource "aws_subnet" "demo_private_a" {
   vpc_id = "${aws_vpc.default.id}"
-  cidr_block = "${var.private_subnet_cidr}"
+  cidr_block = "${var.private_a_subnet_cidr}"
   availability_zone = "${element(var.availability_zones, 0)}"
   tags {
       Name = "terraform_private_subnet"
   }
 }
-output "private_subnet_id" {
-  value = "${aws_subnet.demo_private.id}"
+output "private_a_subnet_id" {
+  value = "${aws_subnet.demo_private_a.id}"
 }
 
-resource "aws_route_table" "demo_private" {
+resource "aws_route_table" "demo_private_a" {
   vpc_id = "${aws_vpc.default.id}"
   route {
       cidr_block = "0.0.0.0/0"
@@ -105,7 +105,37 @@ resource "aws_route_table" "demo_private" {
   }
 }
 
-resource "aws_route_table_association" "demo_private" {
-  subnet_id = "${aws_subnet.demo_private.id}"
-  route_table_id = "${aws_route_table.demo_private.id}"
+resource "aws_route_table_association" "demo_private_a" {
+  subnet_id = "${aws_subnet.demo_private_a.id}"
+  route_table_id = "${aws_route_table.demo_private_a.id}"
+}
+
+#
+# Private Subnet b
+#
+resource "aws_subnet" "demo_private_b" {
+  vpc_id = "${aws_vpc.default.id}"
+  cidr_block = "${var.private_b_subnet_cidr}"
+  availability_zone = "${element(var.availability_zones, 1)}"
+  tags {
+      Name = "terraform_private_subnet"
+  }
+}
+output "private_b_subnet_id" {
+  value = "${aws_subnet.demo_private_b.id}"
+}
+
+#
+# Private Subnet c
+#
+resource "aws_subnet" "demo_private_c" {
+  vpc_id = "${aws_vpc.default.id}"
+  cidr_block = "${var.private_c_subnet_cidr}"
+  availability_zone = "${element(var.availability_zones, 2)}"
+  tags {
+      Name = "terraform_private_subnet"
+  }
+}
+output "private_c_subnet_id" {
+  value = "${aws_subnet.demo_private_c.id}"
 }

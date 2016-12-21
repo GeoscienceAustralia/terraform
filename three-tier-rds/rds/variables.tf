@@ -41,3 +41,12 @@ variable "password" {
   description = "password, provide through your ENV variables"
   default = "Password123"
 }
+
+#
+# From other modules
+#
+variable "private_a_subnet_id" {}
+variable "private_b_subnet_id" {}
+variable "private_c_subnet_id" {}
+variable "rds_sg_id" {}
+variable "vpc_id" {}

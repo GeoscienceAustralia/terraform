@@ -11,10 +11,6 @@
 variable "ip_range" {
   default = "0.0.0.0/0" # Change to your IP Range!
 }
-variable "availability_zones" {
-  # No spaces allowed between az names!
-  default = ["ap-southeast-2a","ap-southeast-2b","ap-southeast-2c"]
-}
 variable "vpc_cidr" {
   description = "CIDR for the whole VPC"
   default = "10.0.0.0/16"
@@ -23,8 +19,24 @@ variable "public_subnet_cidr" {
   description = "CIDR for the Public Subnet"
   default = "10.0.0.0/24"
 }
-variable "private_subnet_cidr" {
+variable "private_a_subnet_cidr" {
   description = "CIDR for the Private Subnet"
   default = "10.0.1.0/24"
 }
+variable "private_b_subnet_cidr" {
+  description = "CIDR for the second Private Subnet"
+  default = "10.0.2.0/24"
+}
+variable "private_c_subnet_cidr" {
+  description = "CIDR for the second Private Subnet"
+  default = "10.0.3.0/24"
+}
+
+#
+# From other modules
+#
+variable "availability_zones" {
+  type = "list"
+}
 variable "key_name" {}
+variable "region" {}
