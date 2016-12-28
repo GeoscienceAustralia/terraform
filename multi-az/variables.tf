@@ -2,6 +2,14 @@ variable "region" {
   default = "ap-southeast-2"
 }
 
+variable "stack_name" {
+    default = "teststack"
+}
+
+variable "owner" {
+  default = "autobots@ga.gov.au"
+}
+
 variable "availability_zones" {
   default = {
       "0" = "ap-southeast-2a"
@@ -10,19 +18,6 @@ variable "availability_zones" {
   }
 }
 
-variable "vpc_cidr" {
-  description = "CIDR for the whole VPC"
-  default = "10.0.0.0/16"
-}
-
-variable "environment" {
-  default = "dev"
-}
-
-variable "public_subnet_cidr" {
-  default = ["10.0.1.0/24","10.0.2.0/24","10.0.3.0/24"]
-}
-
-variable "private_subnet_cidr" {
-  default = ["10.0.51.0/24","10.0.52.0/24","10.0.53.0/24"]
+variable "key_name" {
+    default = "pipeline"
 }
