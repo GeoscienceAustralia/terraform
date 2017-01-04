@@ -1,3 +1,9 @@
+//
+// Module: RDS
+//
+
+// RDS instance variables
+
 variable "identifier" {
   default     = "mydb-rds"
   description = "Identifier for your DB"
@@ -42,11 +48,26 @@ variable "password" {
   default = "Password123"
 }
 
-#
-# From other modules
-#
-variable "private_a_subnet_id" {}
-variable "private_b_subnet_id" {}
-variable "private_c_subnet_id" {}
-variable "rds_sg_id" {}
+variable "cidr_blocks" {
+  default     = "0.0.0.0/0"
+  description = "CIDR for sg"
+}
+
+variable "sg_name" {
+  default     = "rds_sg"
+  description = "Tag Name for sg"
+}
+
+// Variables from other modules
+
+variable "private_subnet_ids" {
+  type = "list"
+}
+
+// Variables for providers used in this module
+
+variable "stack_name" {}
+
+variable "owner" {}
+
 variable "vpc_id" {}
