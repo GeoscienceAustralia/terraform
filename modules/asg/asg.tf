@@ -1,0 +1,21 @@
+resource "aws_autoscaling_group" "asg" {
+  lifecycle { create_before_destroy = true }
+  vpc_zone_identifier = ["${var.public_subnet_ids}"]
+  name = "${var.stack_name}_asg"
+  min_size = "${var.asg_min}"
+  max_size = "${var.asg_max}"
+  wait_for_elb_capacity = false
+  force_delete = true
+  launch_configuration = "${aws_launch_configuration.lc.name}"
+  load_balancers = ["${aws_elb.elb.name}"]
+  tag {
+      key = "Name"
+      value = "${var.stack_name}_asg"
+      propagate_at_launch = "true"
+  }
+  tag {
+      key = "owner"
+      value = "${var.owner}"
+      propagate_at_launch = "true"
+  }
+}
