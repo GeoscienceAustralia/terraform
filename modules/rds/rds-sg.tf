@@ -1,13 +1,13 @@
-resource "aws_security_group" "rds_sg" {
+resource "aws_security_group" "rds" {
   name        = "main_rds_sg"
   description = "Allow all inbound traffic"
-  vpc_id      = "${aws_vpc.default.id}"
+  vpc_id      = "${var.vpc_id}"
 
   ingress {
     from_port   = 0
     to_port     = 65535
     protocol    = "TCP"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["${var.cidr_blocks}"]
   }
 
   egress {
@@ -18,10 +18,7 @@ resource "aws_security_group" "rds_sg" {
   }
 
   tags {
-    Name = "rds-sg"
+    Name = "${var.stack_name}-rds-sg"
+    owner = "${var.owner}"
   }
-}
-
-output "rds_sg_id" {
-  value = "${aws_security_group.rds_sg.id}"
 }
