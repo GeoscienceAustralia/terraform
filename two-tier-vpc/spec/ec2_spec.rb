@@ -1,0 +1,24 @@
+require 'spec_helper'
+
+describe ec2('teststack-jumpbox') do
+  it { should exist }
+  it { should be_running }
+  its(:image_id) { should eq 'ami-4d3b062e' }
+  its(:instance_type) { should eq 't2.nano' }
+  it { should have_security_group('jump_ssh') }
+  it { should belong_to_vpc('teststack-vpc') }
+  it { should belong_to_subnet('teststack-public-subnet-dev-ap-southeast-2a') }
+end
+
+describe ec2('teststack_asg') do
+  it { should exist }
+  it { should be_running }
+  its(:image_id) { should eq 'ami-4d3b062e' }
+  its(:instance_type) { should eq 't2.micro' }
+  it { should have_security_group('elb_http_inbound') }
+  it { should have_security_group('app_ssh_inbound') }
+  it { should have_security_group('elb_outbound') }
+  it { should have_security_group('elb_https_inbound') }
+  it { should belong_to_vpc('teststack-vpc') }
+  it { should belong_to_subnet('teststack-public-subnet-dev-ap-southeast-2a') }
+end
