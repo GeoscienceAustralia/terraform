@@ -19,6 +19,3 @@ resource "aws_eip" "jump" {
     instance = "${aws_instance.jumpbox.id}"
     vpc = true
 }
-output "jumpbox_ip" {
-  value = "${aws_eip.jump.public_ip}"
-}

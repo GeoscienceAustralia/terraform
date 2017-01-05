@@ -29,9 +29,6 @@ resource "aws_security_group" "elb_http_inbound_sg" {
       owner = "${var.owner}"
   }
 }
-output "elb_http_inbound_sg_id" {
-  value = "${aws_security_group.elb_http_inbound_sg.id}"
-}
 
 resource "aws_security_group" "elb_https_inbound_sg" {
   name = "elb_https_inbound"
@@ -54,9 +51,6 @@ resource "aws_security_group" "elb_https_inbound_sg" {
       owner = "${var.owner}"
   }
 }
-output "elb_https_inbound_sg_id" {
-  value = "${aws_security_group.elb_https_inbound_sg.id}"
-}
 
 resource "aws_security_group" "elb_outbound_sg" {
   name = "elb_outbound"
@@ -72,7 +66,4 @@ resource "aws_security_group" "elb_outbound_sg" {
       Name = "${var.stack_name}_elb_outbound",
       owner = "${var.owner}"
   }
-}
-output "elb_outbound_sg_id" {
-  value = "${aws_security_group.elb_outbound_sg.id}"
 }

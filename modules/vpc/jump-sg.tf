@@ -37,6 +37,3 @@ resource "aws_security_group" "ssh_from_jump_sg" {
       owner = "${var.owner}"
   }
 }
-output "ssh_from_jump_sg_id" {
-  value = "${aws_security_group.ssh_from_jump_sg.id}"
-}

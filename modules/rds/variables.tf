@@ -48,6 +48,10 @@ variable "password" {
   default = "Password123"
 }
 
+variable "rds_is_multi_az" {
+  default = "false"
+}
+
 variable "cidr_blocks" {
   default     = "0.0.0.0/0"
   description = "CIDR for sg"

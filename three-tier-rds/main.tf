@@ -19,6 +19,7 @@ module "asg" {
   public_subnet_ids = "${module.vpc.public_subnet_ids}"
   http_inbound_sg_id = "${module.vpc.elb_http_inbound_sg_id}"
   https_inbound_sg_id = "${module.vpc.elb_https_inbound_sg_id}"
+  app_ssh_inbound_sg_id = "${module.vpc.app_ssh_inbound_sg_id}"
   outbound_sg_id = "${module.vpc.elb_outbound_sg_id}"
 }
 
@@ -28,8 +29,8 @@ module "rds" {
   owner = "${var.owner}"
   vpc_id = "${module.vpc.vpc_id}"
   private_subnet_ids = "${module.vpc.private_subnet_ids}"
-}
-
-output "elb_dns_name" {
-  value = "${module.asg.elb_dns_name}"
+  db_name = "${var.db_name}"
+  rds_is_multi_az = "${var.rds_is_multi_az}"
+  username = "${var.username}"
+  password = "${var.password}"
 }

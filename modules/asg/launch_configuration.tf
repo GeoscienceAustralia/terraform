@@ -5,6 +5,7 @@ resource "aws_launch_configuration" "lc" {
   security_groups = [
     "${var.http_inbound_sg_id}",
     "${var.https_inbound_sg_id}",
+    "${var.app_ssh_inbound_sg_id}",
     "${var.outbound_sg_id}"
   ]
   user_data = "${file("./userdata.sh")}"
