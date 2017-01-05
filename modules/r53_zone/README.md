@@ -21,7 +21,7 @@
 
 * vpc_id 
 
-   The id of the vpc most likely this will be '''${module.vpc.vpc_id}'''
+   The id of the vpc most likely this will be `${module.vpc.vpc_id}`
 
 ### Outputs
 
@@ -30,7 +30,7 @@
    The zone id of the route 53 zone, to be used with r53_record module
 
 ## Examples
-'''
+```
 module "r53_zone" {
   source = "github.com/GeoscienceAustralia/cloud-examples//modules/routr53_zonee53?ref=master"
   zone = "${var.stack_name}"
@@ -38,4 +38,4 @@ module "r53_zone" {
   owner = "${var.owner}"
   vpc_id = "${module.vpc.vpc_id}"
 }
-'''
+```

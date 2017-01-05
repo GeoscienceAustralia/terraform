@@ -38,7 +38,7 @@
 
 ## Examples
 ### Simple example
-'''
+```
 module "route53" {
   source = "github.com/GeoscienceAustralia/cloud-examples//modules/route53?ref=master"
   dns_name = "www.example.com"
@@ -46,10 +46,10 @@ module "route53" {
   target = "${module.eip.public_ip}"
   record_type = "simple"
 }
-'''
+```
 
 ### Alias example
-'''
+```
 module "route53" {
   source = "github.com/GeoscienceAustralia/cloud-examples//modules/route53?ref=master"
   dns_name = "www.example.com"
@@ -58,4 +58,4 @@ module "route53" {
   target = "${module.asg.elb_dns_name}"
   record_type = "alias"
 }
-'''
+```
