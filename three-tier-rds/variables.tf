@@ -21,3 +21,21 @@ variable "availability_zones" {
 variable "key_name" {
     default = "pipeline"
 }
+
+// RDS Variables
+
+variable "db_name" {
+  default     = "mydb"
+}
+
+variable "username" {
+  default     = "dbadmin"
+}
+
+variable "password" {
+  default = "password123!"
+}
+
+variable "rds_is_multi_az" {
+  default = "false"
+}

@@ -10,9 +10,6 @@ resource "aws_subnet" "private" {
         owner = "${var.owner}"
 	}
 }
-output "private_subnet_ids" {
-    value = ["${aws_subnet.private.*.id}"]
-}
 
 resource "aws_route_table" "private" {
     count = "${length(var.availability_zones)}"

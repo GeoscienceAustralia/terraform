@@ -10,9 +10,6 @@ resource "aws_subnet" "public" {
         owner = "${var.owner}"
 	}
 }
-output "public_subnet_ids" {
-    value = ["${aws_subnet.public.*.id}"]
-}
 
 resource "aws_route_table" "public" {
     count = "${length(var.availability_zones)}"

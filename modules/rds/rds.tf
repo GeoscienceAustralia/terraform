@@ -1,5 +1,5 @@
 resource "aws_db_instance" "rds" {
-  identifier             = "${var.identifier}"
+  identifier             = "${var.stack_name}-${var.identifier}"
   allocated_storage      = "${var.storage}"
   engine                 = "${var.engine}"
   engine_version         = "${lookup(var.engine_version, var.engine)}"
@@ -8,6 +8,7 @@ resource "aws_db_instance" "rds" {
   username               = "${var.username}"
   password               = "${var.password}"
   vpc_security_group_ids = ["${aws_security_group.rds.id}"]
+  multi_az               = "${var.rds_is_multi_az}"
   db_subnet_group_name   = "${aws_db_subnet_group.rds-subnet.id}"
 }
 

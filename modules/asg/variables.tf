@@ -20,6 +20,8 @@ variable "http_inbound_sg_id" {}
 
 variable "https_inbound_sg_id" {}
 
+variable "app_ssh_inbound_sg_id" {}
+
 variable "outbound_sg_id" {}
 
 variable "asg_min" {
