@@ -38,6 +38,10 @@ variable "public_subnet_ids" {
     type = "list"
 }
 
+variable "private_subnet_ids" {
+    type = "list"
+}
+
 // Variables for providers used in this module
 
 variable "region" {

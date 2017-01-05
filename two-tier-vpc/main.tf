@@ -17,6 +17,7 @@ module "asg" {
   owner = "${var.owner}"
   key_name = "${var.key_name}"
   public_subnet_ids = "${module.vpc.public_subnet_ids}"
+  private_subnet_ids = "${module.vpc.private_subnet_ids}"
   http_inbound_sg_id = "${module.vpc.elb_http_inbound_sg_id}"
   https_inbound_sg_id = "${module.vpc.elb_https_inbound_sg_id}"
   app_ssh_inbound_sg_id = "${module.vpc.app_ssh_inbound_sg_id}"
