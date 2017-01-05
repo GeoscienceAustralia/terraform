@@ -8,7 +8,7 @@ resource "aws_launch_configuration" "lc" {
     "${var.app_ssh_inbound_sg_id}",
     "${var.outbound_sg_id}"
   ]
-  user_data = "${file("./userdata.sh")}"
+  user_data = "${file(var.userdata_filepath)}"
   key_name = "${var.key_name}"
   associate_public_ip_address = true
 }

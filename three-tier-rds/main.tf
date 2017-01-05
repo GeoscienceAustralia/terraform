@@ -17,6 +17,7 @@ module "asg" {
   owner = "${var.owner}"
   key_name = "${var.key_name}"
   private_subnet_ids = "${module.vpc.private_subnet_ids}"
+  public_subnet_ids = "${module.vpc.public_subnet_ids}"
   http_inbound_sg_id = "${module.vpc.elb_http_inbound_sg_id}"
   https_inbound_sg_id = "${module.vpc.elb_https_inbound_sg_id}"
   app_ssh_inbound_sg_id = "${module.vpc.app_ssh_inbound_sg_id}"
@@ -51,12 +52,4 @@ module "r53_record_db" {
   target = "${module.rds.database_address}"
   record_type = "alias"
 
-}
-
-module "r53_record_nat" {
-  source = "../modules/r53_record"
-  dns_name = "nat"
-  r53_zone_id = "${module.r53_zone.zone_id}"
-  target = "${module.vpc.nat_eip}"
-  record_type = "simple"
 }
