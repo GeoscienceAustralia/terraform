@@ -3,7 +3,7 @@ variable "region" {
 }
 
 variable "stack_name" {
-    default = "jkteststack"
+    default = "teststack"
 }
 
 variable "owner" {
