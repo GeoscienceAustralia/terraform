@@ -4,6 +4,7 @@ output "vpc_id" {
     value = "${aws_vpc.vpc.id}"
 }
 
+<<<<<<< HEAD
 output "jumpbox_ip" {
   value = "${aws_eip.jump.public_ip}"
 }
@@ -51,3 +52,8 @@ output "elb_outbound_sg_id" {
 output "ssh_from_jump_sg_id" {
   value = "${aws_security_group.ssh_from_jump_sg.id}"
 }
+=======
+output "nat_eip" {
+    value = "${aws_eip.nat.0.private_ip}"
+}
+>>>>>>> integration

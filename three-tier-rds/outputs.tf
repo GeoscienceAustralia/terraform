@@ -9,3 +9,7 @@ output "rds_endpoint" {
 output "jumpbox_ip" {
   value = "${module.vpc.jumpbox_ip}"
 }
+
+output "database_fqdn" {
+    value = "${module.r53_record_db.alias_fqdn}"
+}

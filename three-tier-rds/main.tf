@@ -34,3 +34,29 @@ module "rds" {
   username = "${var.username}"
   password = "${var.password}"
 }
+
+module "r53_zone" {
+  source = "../modules/r53_zone"
+  zone = "${var.stack_name}"
+  stack_name = "${var.stack_name}"
+  owner = "${var.owner}"
+  vpc_id = "${module.vpc.vpc_id}"
+}
+
+module "r53_record_db" {
+  source = "../modules/r53_record"
+  dns_name = "database"
+  r53_zone_id = "${module.r53_zone.zone_id}"
+  target_hosted_zone_id = "${module.rds.database_hosted_zone_id}"
+  target = "${module.rds.database_address}"
+  record_type = "alias"
+
+}
+
+module "r53_record_nat" {
+  source = "../modules/r53_record"
+  dns_name = "nat"
+  r53_zone_id = "${module.r53_zone.zone_id}"
+  target = "${module.vpc.nat_eip}"
+  record_type = "simple"
+}
