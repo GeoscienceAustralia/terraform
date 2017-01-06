@@ -42,6 +42,10 @@ variable "private_subnet_ids" {
     type = "list"
 }
 
+variable "userdata_filepath" {
+    default = "./userdata.sh"
+}
+
 // Variables for providers used in this module
 
 variable "region" {
@@ -49,6 +53,8 @@ variable "region" {
 }
 
 variable "stack_name" {}
+
+variable "environment" {}
 
 variable "owner" {}
 

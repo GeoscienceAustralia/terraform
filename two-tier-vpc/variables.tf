@@ -3,11 +3,15 @@ variable "region" {
 }
 
 variable "stack_name" {
-    default = "teststack"
+  default = "2tiertest"
 }
 
 variable "owner" {
   default = "autobots@ga.gov.au"
+}
+
+variable "environment" {
+  default     = "dev"
 }
 
 variable "availability_zones" {
@@ -19,5 +23,5 @@ variable "availability_zones" {
 }
 
 variable "key_name" {
-    default = "pipeline"
+  default = "INSERT_YOUR_KEYPAIR_HERE"
 }
