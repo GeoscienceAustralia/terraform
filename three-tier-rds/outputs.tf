@@ -11,5 +11,5 @@ output "jumpbox_ip" {
 }
 
 output "database_fqdn" {
-    value = "${module.r53_record_db.alias_fqdn}"
+  value = "${module.r53_record_db.alias_fqdn}"
 }

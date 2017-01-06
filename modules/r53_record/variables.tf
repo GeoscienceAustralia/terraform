@@ -1,9 +1,9 @@
 variable "ttl" {
-    default = "300"
+  default = "300"
 }
 // Only used in alias, we add a default so simple doesn't have to specify zone
 variable "target_hosted_zone_id" {
-    default = "placeholder"
+  default = "placeholder"
 }
 //
 // From other modules
