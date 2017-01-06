@@ -3,7 +3,7 @@ variable "region" {
 }
 
 variable "stack_name" {
-    default = "teststack"
+  default = "teststack"
 }
 
 variable "owner" {
@@ -19,7 +19,7 @@ variable "availability_zones" {
 }
 
 variable "key_name" {
-    default = "pipeline"
+  default = "pipeline"
 }
 
 // RDS Variables

@@ -17,6 +17,9 @@ resource "aws_security_group" "jump_ssh_sg" {
   tags {
       Name  = "${var.stack_name}-jump_ssh"
       owner = "${var.owner}"
+      stack_name              = "${var.stack_name}"
+      environment             = "${var.environment}"
+      created_by              = "terraform"
   }
 }
 
@@ -35,5 +38,8 @@ resource "aws_security_group" "ssh_from_jump_sg" {
   tags {
   	  Name  = "${var.stack_name}-ssh_from_jump"
       owner = "${var.owner}"
+      stack_name              = "${var.stack_name}"
+      environment             = "${var.environment}"
+      created_by              = "terraform"
   }
 }

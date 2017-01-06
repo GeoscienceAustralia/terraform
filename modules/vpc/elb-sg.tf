@@ -27,6 +27,9 @@ resource "aws_security_group" "elb_http_inbound_sg" {
   tags {
       Name = "${var.stack_name}_elb_http_inbound",
       owner = "${var.owner}"
+      stack_name              = "${var.stack_name}"
+      environment             = "${var.environment}"
+      created_by              = "terraform"
   }
 }
 
@@ -49,6 +52,9 @@ resource "aws_security_group" "elb_https_inbound_sg" {
   tags {
       Name = "${var.stack_name}_elb_https_inbound",
       owner = "${var.owner}"
+      stack_name              = "${var.stack_name}"
+      environment             = "${var.environment}"
+      created_by              = "terraform"
   }
 }
 
@@ -65,5 +71,8 @@ resource "aws_security_group" "elb_outbound_sg" {
   tags {
       Name = "${var.stack_name}_elb_outbound",
       owner = "${var.owner}"
+      stack_name              = "${var.stack_name}"
+      environment             = "${var.environment}"
+      created_by              = "terraform"
   }
 }
