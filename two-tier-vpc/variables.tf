@@ -10,6 +10,10 @@ variable "owner" {
   default = "autobots@ga.gov.au"
 }
 
+variable "environment" {
+  default     = "dev"
+}
+
 variable "availability_zones" {
   default = {
       "0" = "ap-southeast-2a"

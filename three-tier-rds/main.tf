@@ -5,6 +5,7 @@ provider "aws" {
 module "vpc" {
   source                    = "../modules/vpc"
   stack_name                = "${var.stack_name}"
+  environment               = "${var.environment}"
   owner                     = "${var.owner}"
   key_name                  = "${var.key_name}"
   nat_gw_count              = "1"
@@ -14,6 +15,7 @@ module "vpc" {
 module "asg" {
   source                    = "../modules/asg"
   stack_name                = "${var.stack_name}"
+  environment               = "${var.environment}"
   owner                     = "${var.owner}"
   key_name                  = "${var.key_name}"
   private_subnet_ids        = "${module.vpc.private_subnet_ids}"
@@ -27,6 +29,7 @@ module "asg" {
 module "rds" {
   source                    = "../modules/rds"
   stack_name                = "${var.stack_name}"
+  environment               = "${var.environment}"
   owner                     = "${var.owner}"
   vpc_id                    = "${module.vpc.vpc_id}"
   private_subnet_ids        = "${module.vpc.private_subnet_ids}"
@@ -40,6 +43,7 @@ module "r53_zone" {
   source                    = "../modules/r53_zone"
   zone                      = "${var.stack_name}"
   stack_name                = "${var.stack_name}"
+  environment               = "${var.environment}"
   owner                     = "${var.owner}"
   vpc_id                    = "${module.vpc.vpc_id}"
 }

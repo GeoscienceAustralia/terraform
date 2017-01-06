@@ -54,6 +54,8 @@ variable "region" {
 
 variable "stack_name" {}
 
+variable "environment" {}
+
 variable "owner" {}
 
 variable "key_name" {}

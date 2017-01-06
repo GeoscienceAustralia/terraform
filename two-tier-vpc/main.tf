@@ -5,6 +5,7 @@ provider "aws" {
 module "vpc" {
   source                 = "../modules/vpc"
   stack_name             = "${var.stack_name}"
+  environment            = "${var.environment}"
   owner                  = "${var.owner}"
   key_name               = "${var.key_name}"
   nat_gw_count           = "1"
@@ -14,6 +15,7 @@ module "vpc" {
 module "asg" {
   source                 = "../modules/asg"
   stack_name             = "${var.stack_name}"
+  environment            = "${var.environment}"
   owner                  = "${var.owner}"
   key_name               = "${var.key_name}"
   public_subnet_ids      = "${module.vpc.public_subnet_ids}"

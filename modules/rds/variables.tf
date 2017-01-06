@@ -72,6 +72,8 @@ variable "private_subnet_ids" {
 
 variable "stack_name" {}
 
+variable "environment" {}
+
 variable "owner" {}
 
 variable "vpc_id" {}
