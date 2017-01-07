@@ -7,6 +7,7 @@ env:
   - PATH="${HOME}/bin:${PATH}"
   - TMPDIR="${TMPDIR:-/tmp}"
 before_install:
+- mkdir -p "${HOME}/bin"
 - if ! terraform version ; then
     pushd "${TMPDIR}" ;
     curl -sSL
