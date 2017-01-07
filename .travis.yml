@@ -20,16 +20,14 @@ install:
     terraform version ;
   fi
 before_script:
-- chmod +x .travis/*
-- ".travis/setup.sh"
 - pushd two-tier-vpc
 - terraform get
 - terraform plan
+- terraform apply
 script:
-- ".travis/test.sh"
+- echo 'Tests go here'
 after_script:
-- ".travis/teardown.sh"
-- terraform destroy -f
+- terraform destroy -force
 env:
   global:
   - AWS_DEFAULT_REGION=ap-southeast-2
