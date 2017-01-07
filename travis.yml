@@ -1,0 +1,29 @@
+language: bash
+sudo: required
+python:
+- '3.5'
+env:
+  global:
+  - PATH="${HOME}/bin:${PATH}"
+  - TMPDIR="${TMPDIR:-/tmp}"
+before_install:
+- if ! terraform version ; then
+    pushd "${TMPDIR}" ;
+    curl -sSL
+      -o terraform.zip
+      "https://releases.hashicorp.com/terraform/0.8.2/terraform_0.8.2_linux_amd64.zip" ;
+    unzip terraform.zip ;
+    mv -v terraform "${HOME}/bin/terraform" ;
+    chmod +x "${HOME}/bin/terraform" ;
+before_script:
+- chmod +x .travis/*
+- ".travis/setup.sh"
+script:
+- ".travis/test.sh"
+after_script:
+- ".travis/teardown.sh"
+env:
+  global:
+  - AWS_DEFAULT_REGION=ap-southeast-2
+  - secure: JIXoiFE2F9/TqkfKqMy29rwCHKV5JbfyIvejdVV7hFbt8EgupWfWL5cCyf7MNOABKjk88IxmybGQsgbUV4uCsTZPr0/L/PGe8mH4ImYLjWUe1Xn9RMJSdiYAfLLYj2mYRNaJuxxADn9gnJi5XXYQpbPU25TbvO5Z4Ti3klj6HjCrxXYox+TDB1NMlgnUeK9AzoCig98nfTniuhylOi3Qn/E5YiRFPMbZYudoDBscDFelNRqtDrmeQeVqq8p3c1Gzcsd6GchCSaB8tQoHuZw10LAfNhbRdGNKB9yuDLFB0lYw6JN3LyCD34en9hPwWheuCIUg5ZIO90z9oOS1zZicvPSM+5Om2SWl3MyhO+tyNYRkZYOTt6To55YSY3qx6HYf9d+6cPJQgeJUhmhMulA5fhssvdrbKZ/Zr4eQMtRRGegRuMCYTHW/tk58DPzF/Iq1FFcdjaHXDOWPOEq71ZT+pVbZKQHEWz8w2XCH/lqUf8OYF+7764f+7fgXfDu527F1tNb2wxp7JAu6SvsPQCRoLVOJyxDphfAoIL7g8oslkJHGk1KiIReWzi4X4X5rTjJxNTalPT0XkGbZthBlwStpoU39SELifsTGLcRSelB6O1N/WeVLR2utRMPnulyYHHyecgxIQsqcqXTTseiqFRYvRHHXxpU0VPiPl71S7sKuaUE=
+  - secure: AwJY30ZSb/9LY9sFOi0xIfRxzd+GBtxXnhxAwuRfEYcvTW/3y2EjL5N27gr7f70c+5p1O+tWUK3NxxxwHquVOuA2lt2hTTbX27X8bG7oGDoKMGGmPTZBwg+oDm23YO+kucABAsfOUPDYLm50H01blRm2xmNPcBRz//0sOqYR7SZyk0Lq7V031+VVeMcYnSdzRo3RZ9rk01QzzATgm2m6pq/UxDKCSbUp0Zc55ppLQshFdVFKE+IiJmIaXAL+AsUt41oWKifXY6fDVrlxLTd4em4ajq1Wneii8EMY+qq+ve+WhaOQFzqU3RjNU4SPzKdKiP9cQR5jgmM75APUQK4PlWe+gbCSDkbxdfMyDBBhdnRonDc4xzAoYkU6prmeREqg9uvhAH7u/zEQbmGRuuDIX/mgUWcaA8IIiqeVb15zYHCwQhz99sa9jz0vGLhzRhW8Bg1qttg9EQqscbK1Sser9YZWO/u8Pm/bIFQ2OBu6kYrhgoi5SGceIh9AwIcR88U1B7SX0wSQRXMlm5wyLBY2WbGA4ti9Lst9DAAECM7YgaHhUaEQX6cYXpG6Lm7jqEJANLXUX2ga7jdXogl4hqsnOH3tzeuk0fSTKUvaUWRG5Fsq4DULusgwq3hQIN1M0+il1o33TxSVQNVc1QcQWwnsAjxxVzR6gMU/JjVhQq5eGHA=
