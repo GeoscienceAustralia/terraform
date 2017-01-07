@@ -6,7 +6,7 @@ env:
   global:
   - PATH="${HOME}/bin:${PATH}"
   - TMPDIR="${TMPDIR:-/tmp}"
-before_install:
+install:
 - mkdir -p "${HOME}/bin"
 - if ! terraform version ; then
     pushd "${TMPDIR}" ;
@@ -16,14 +16,20 @@ before_install:
     unzip terraform.zip ;
     mv -v terraform "${HOME}/bin/terraform" ;
     chmod +x "${HOME}/bin/terraform" ;
+    popd ;
+    terraform version ;
   fi
 before_script:
 - chmod +x .travis/*
 - ".travis/setup.sh"
+- pushd two-tier-vpc
+- terraform get
+- terraform plan
 script:
 - ".travis/test.sh"
 after_script:
 - ".travis/teardown.sh"
+- terraform destroy -f
 env:
   global:
   - AWS_DEFAULT_REGION=ap-southeast-2
