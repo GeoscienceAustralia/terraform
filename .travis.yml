@@ -25,7 +25,7 @@ before_script:
 - terraform plan
 - terraform apply
 script:
-- echo 'Tests go here'
+- bundle exec rake spec
 after_script:
 - terraform destroy -force
 env:
