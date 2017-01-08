@@ -13,7 +13,7 @@ env:
   - TEST_SUITE=three-tier-rds
 
 install:
-- bundle install --path $TEST_SUITE
+- pushd $TEST_SUITE && bundle install && popd
 - mkdir -p "$HOME/bin"
 - if ! terraform version ; then
     pushd "$TMPDIR" ;
