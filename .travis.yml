@@ -27,12 +27,11 @@ install:
     popd ;
     terraform version ;
   fi
-before_script:
+script:
 - pushd $TEST_SUITE
 - terraform get
 - terraform plan
 - terraform apply
-script:
 - bundle exec rake spec
 after_script:
 - terraform destroy -force
