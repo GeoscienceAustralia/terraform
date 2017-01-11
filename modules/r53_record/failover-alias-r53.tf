@@ -1,0 +1,35 @@
+resource "aws_route53_health_check" "check" {
+  fqdn              = "${var.target}.${var.target_hosted_zone_id}"
+  port              = "${var.health_check_port}"
+  type              = "HTTP"
+  resource_path     = "/"
+  failure_threshold = "${var.failure_threshold}"
+  request_interval  = "${var.request_interval}"
+
+  tags = {
+    name        = "${var.stack_name}_r53_health_check"
+    owner       = "${var.owner}"
+    stack_name  = "${var.stack_name}"
+    environment = "${var.environment}"
+    terraform   = "true"
+  }
+}
+
+resource "aws_route53_record" "alias_route" {
+  # if record_type.beginsWith("a")
+  count           = "${replace(replace(var.record_type, "/^[^f].*/", "0"), "/^f.*$/", "1")}"
+  zone_id         = "${var.r53_zone_id}"
+  name            = "${var.dns_name}"
+  type            = "A"
+  health_check_id = "{aws_route53_health_check.check.id}"
+
+  failover_routing_policy {
+    type = "${var.failover_policy}"
+  }
+
+  alias {
+    name                   = "${var.target}"
+    zone_id                = "${var.target_hosted_zone_id}"
+    evaluate_target_health = true
+  }
+}
