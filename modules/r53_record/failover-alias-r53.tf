@@ -15,8 +15,8 @@ resource "aws_route53_health_check" "check" {
   }
 }
 
-resource "aws_route53_record" "alias_route" {
-  # if record_type.beginsWith("a")
+resource "aws_route53_record" "failover_alias_route" {
+  # if record_type.beginsWith("f")
   count           = "${replace(replace(var.record_type, "/^[^f].*/", "0"), "/^f.*$/", "1")}"
   zone_id         = "${var.r53_zone_id}"
   name            = "${var.dns_name}"
