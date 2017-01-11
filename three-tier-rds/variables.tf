@@ -3,7 +3,7 @@ variable "region" {
 }
 
 variable "stack_name" {
-  default     = "3tiertest"
+  default     = "threetiertest"
 }
 
 variable "owner" {
