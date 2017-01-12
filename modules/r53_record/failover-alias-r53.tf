@@ -1,4 +1,4 @@
-resource "aws_route53_health_check" "check" {
+resource "aws_route53_health_check" "child" {
   fqdn              = "${var.target}.${var.target_hosted_zone_id}"
   port              = "${var.health_check_port}"
   type              = "HTTP"
@@ -7,7 +7,21 @@ resource "aws_route53_health_check" "check" {
   request_interval  = "${var.request_interval}"
 
   tags = {
-    name        = "${var.stack_name}_r53_health_check"
+    Name        = "${var.stack_name}_child_health_check"
+    owner       = "${var.owner}"
+    stack_name  = "${var.stack_name}"
+    environment = "${var.environment}"
+    terraform   = "true"
+  }
+}
+
+resource "aws_route53_health_check" "check" {
+  type                   = "CALCULATED"
+  child_health_threshold = 1
+  child_health_checks    = ["${aws_route53_health_check.child1.id}"]
+
+  tags = {
+    Name        = "${var.stack_name}_r53_health_check"
     owner       = "${var.owner}"
     stack_name  = "${var.stack_name}"
     environment = "${var.environment}"
@@ -21,7 +35,7 @@ resource "aws_route53_record" "failover_alias_route" {
   zone_id         = "${var.r53_zone_id}"
   name            = "${var.dns_name}"
   type            = "A"
-  health_check_id = "{aws_route53_health_check.check.id}"
+  health_check_id = "${aws_route53_health_check.check.id}"
   set_identifier  = "${var.environment}"
 
   failover_routing_policy {
@@ -29,7 +43,7 @@ resource "aws_route53_record" "failover_alias_route" {
   }
 
   alias {
-    name                   = "${var.target}"
+    Name                   = "${var.target}"
     zone_id                = "${var.target_hosted_zone_id}"
     evaluate_target_health = true
   }
