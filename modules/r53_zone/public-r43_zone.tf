@@ -1,4 +1,4 @@
-resource "aws_route53_zone" "zone" {
+resource "aws_route53_zone" "public_zone" {
   # Only build if is_public is true
   count = "${var.is_public}"
   name  = "${var.zone}"
