@@ -10,4 +10,11 @@ variable "environment" {}
 
 variable "owner" {}
 
-variable "vpc_id" {}
+# Only need a vpc_id if private
+variable "vpc_id" {
+  default = "placeholder"
+}
+
+variable "is_public" {
+  default = false
+}
