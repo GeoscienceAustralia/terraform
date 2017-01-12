@@ -24,6 +24,18 @@ variable "request_interval" {
   default = "30"
 }
 
+variable "stack_name" {
+  default = "placeholder"
+}
+
+variable "environment" {
+  default = "placeholder"
+}
+
+variable "owner" {
+  default = "placeholder"
+}
+
 //
 // From other modules
 //
@@ -34,9 +46,3 @@ variable "target" {}
 variable "r53_zone_id" {}
 
 variable "record_type" {}
-
-variable "stack_name" {}
-
-variable "environment" {}
-
-variable "owner" {}
