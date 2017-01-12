@@ -43,7 +43,7 @@ resource "aws_route53_record" "failover_alias_route" {
   }
 
   alias {
-    Name                   = "${var.target}"
+    name                   = "${var.target}"
     zone_id                = "${var.target_hosted_zone_id}"
     evaluate_target_health = true
   }
