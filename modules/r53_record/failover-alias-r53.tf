@@ -22,6 +22,7 @@ resource "aws_route53_record" "failover_alias_route" {
   name            = "${var.dns_name}"
   type            = "A"
   health_check_id = "{aws_route53_health_check.check.id}"
+  set_identifier  = "${var.environment}"
 
   failover_routing_policy {
     type = "${var.failover_policy}"
