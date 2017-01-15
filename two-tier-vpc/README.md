@@ -14,11 +14,17 @@ Set the following variable in variables.tf:
 
 ### Launching
 
-Run these commands:
+Run these commands for **Terraform**:
 
 1. terraform get
 2. terraform plan
 3. terraform apply
+
+... or these if your are using **Terragrunt**
+
+1. terragrunt get
+2. terragrunt plan
+3. terragrunt apply
 
 This command will output your ELB address, which you will need below.
 
