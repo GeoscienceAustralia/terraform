@@ -42,6 +42,7 @@ script:
 - terragrunt get
 - terragrunt plan
 - terragrunt apply
+- sleep 60
 - bundle exec rake spec
 after_script:
 - terragrunt destroy -force
