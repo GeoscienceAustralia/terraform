@@ -3,7 +3,7 @@
 Code examples to be referenced at cloud.ga.gov.au.
 
 ## Contents
-* **simple-webserver** 
+* **s3-www-cloudfront** (Development in Progress)
 * **three-tier-rds**
 * **two-tier-rds**
 
@@ -11,7 +11,8 @@ Code examples to be referenced at cloud.ga.gov.au.
 Download and install [terraform](https://www.terraform.io/downloads.html)
 
 ## Usage
-Each item has its own README
+Each stack has its own README
+If you wish to use the modules alone, you can reference them using `source="github.com/GeoscienceAustralia/terraform//modules/vpc"`
 
 ## Contributing
 Each example has a test suite (generated with [awspec](https://github.com/k1LoW/awspec)), if you make changes that will cause the tests to fail, 

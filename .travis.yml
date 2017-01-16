@@ -27,11 +27,21 @@ install:
     popd ;
     terraform version ;
   fi
+- if ! terragrunt version ; then
+    pushd "$TMPDIR" ;
+    curl -sSL
+      -o terragrunt
+      "https://github.com/gruntwork-io/terragrunt/releases/download/v0.9.2/terragrunt_linux_amd64" ;
+    mv -v terragrunt "$TRAVIS_BUILD_DIR/bin/terragrunt" ;
+    chmod +x "$TRAVIS_BUILD_DIR/bin/terragrunt" ;
+    popd ;
+    terragrunt version ;
+  fi
 script:
 - pushd $TEST_SUITE
-- terraform get
-- terraform plan
-- terraform apply
+- terragrunt get
+- terragrunt plan
+- terragrunt apply
 - bundle exec rake spec
 after_script:
-- terraform destroy -force
+- terragrunt destroy -force

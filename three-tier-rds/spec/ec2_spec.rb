@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'awspec'
 
 describe ec2('threetiertest-jumpbox') do
   it { should exist }
