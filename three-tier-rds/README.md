@@ -1,32 +1,43 @@
 # Overview
-WARNING:  LAUNCHING THIS WILL COST YOU MONEY
 
-This is a demo of using Terraform (https://terraform.io) to provision a sample AWS architecture.  Using this will cost you money.
+This will create:
 
-WARNING:  LAUNCHING THIS WILL COST YOU MONEY
+ * An autoscaling web server group
+ * An elastic load-balancer
+ * A Postgres database
+ * A VPC with a NAT gateway and a jump host
 
-# Before You Begin
-1. If you haven't already configured the AWS CLI, or another SDK, on the machine where you will be running Terraform you should follow these instructions to setup the AWS CLI and create a credential profile which Terraform will use for authentication [download here](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html) 
-2. Install terraform ```brew install terraform``` on OSX or download from the [terraform website](https://www.terraform.io/downloads.html)
+### Set Variables
 
-# Configure
-1. Set your variables in the variables.tf file
+Set the following variables in variables.tf:
 
-# Launching
+ * db_name - database name
+ * username - database username
+ * password - database password
+ * key_name - the ssh key to be added to your EC2 instances
+
+### Launching
+
+Run these commands for **Terraform**:
+
 1. terraform get
 2. terraform plan
 3. terraform apply
 
-# Destroying
-There's [currently an issue](https://github.com/hashicorp/terraform/issues/2493) with using the [create_before_destroy lifecycle policy](https://www.terraform.io/docs/configuration/resources.html#lifecycle) on resources that effects destroying them.  The easiest way to destroy the environment is to change the create_before_destroy to false.  This change will need to be made in the `autoscaling_groups/webapp-asg.tf` and `launch_configurations/webapp-lc.tf` files.
+... or these if your are using **Terragrunt**
 
-Once you set create_before_destroy to false you can run `terraform destroy successfully`.
+1. terragrunt get
+2. terragrunt plan
+3. terragrunt apply
 
-# License
-Copyright 2016 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+This command will output your database endpoint, which you will need below.
 
-Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with the License. A copy of the License is located at
+### Connecting to database
 
-    http://aws.amazon.com/apache2.0/
+From one of the application servers, you can connect to the database by running:
 
-or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+psql -h <<endpointname>> <<db_name>> <<username>>
+
+For example:
+
+psql -h teststack-mydb-rds.dfk324ljsdf1.ap-southeast-2.rds.amazonaws.com mydb dbadmin
