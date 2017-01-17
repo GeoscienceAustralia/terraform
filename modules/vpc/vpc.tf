@@ -27,10 +27,9 @@ resource "aws_nat_gateway" "nat" {
     count                      = "${var.nat_gw_count}"
     allocation_id              = "${element(aws_eip.nat.*.id, count.index)}"
     subnet_id                  = "${element(aws_subnet.public.*.id, count.index)}"
-    /*depends_on                 = ["aws_internet_gateway.default"]*/
 }
 
 resource "aws_eip" "nat" {
-  count                        = "${length(var.availability_zones)}"
+    count                      = "${var.nat_gw_count}"
   vpc                          = true
 }
