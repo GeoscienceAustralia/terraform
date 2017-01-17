@@ -1,6 +1,7 @@
 require 'awspec'
+require 'ec2_helper'
 
-describe ec2('threetiertest-jumpbox') do
+describe ec2(EC2Finder.GetIdFromName('threetiertest-jumpbox')) do
   it { should exist }
   it { should be_running }
   its(:image_id) { should eq 'ami-4d3b062e' }
@@ -9,7 +10,7 @@ describe ec2('threetiertest-jumpbox') do
   it { should belong_to_vpc('threetiertest-vpc') }
 end
 
-describe ec2('threetiertest_asg') do
+describe ec2(EC2Finder.GetIdFromName('threetiertest_asg')) do
   it { should exist }
   it { should be_running }
   its(:image_id) { should eq 'ami-4d3b062e' }

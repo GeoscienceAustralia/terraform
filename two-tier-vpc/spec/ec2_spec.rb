@@ -1,6 +1,6 @@
 require 'awspec'
 
-describe ec2('twotiertest-jumpbox') do
+describe ec2(EC2Finder.GetIdFromName('twotiertest-jumpbox')) do
   it { should exist }
   it { should be_running }
   its(:image_id) { should eq 'ami-4d3b062e' }
@@ -9,7 +9,7 @@ describe ec2('twotiertest-jumpbox') do
   it { should belong_to_vpc('twotiertest-vpc') }
 end
 
-describe ec2('twotiertest_asg') do
+describe ec2(EC2Finder.GetIdFromName('twotiertest_asg')) do
   it { should exist }
   it { should be_running }
   its(:image_id) { should eq 'ami-4d3b062e' }
