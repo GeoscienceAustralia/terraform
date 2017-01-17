@@ -6,7 +6,8 @@ Terraform examples to be referenced at cloud.ga.gov.au.
 Individual modules can be referenced from terraform files using `source = "github.com/GeoscienceAustralia/terraform//modules/vpc"`
 
 ## Contents
-* **s3-www-cloudfront** (still in development) 
+
+* **s3-www-cloudfront** (Development in Progress)
 * **three-tier-rds**
 * **two-tier-rds**
 
@@ -27,4 +28,3 @@ Each item has its own README
 1. browse to the directory you want to test
 1. `bundle install`
 1. `bundle exec rake spec`
-

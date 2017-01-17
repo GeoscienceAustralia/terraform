@@ -1,0 +1,47 @@
+language: bash
+sudo: required
+env:
+  global:
+  - AWS_DEFAULT_REGION=ap-southeast-2
+  - PATH="$TRAVIS_BUILD_DIR/bin:$PATH"
+  - TMPDIR="$TRAVIS_BUILD_DIR/tmp"
+  - secure: "iKjfpAYqsE9MQgoxZLOAF9LgCd/uESLzkI/m3HldqvF8I6XXW11McKWuYeK14dqRwVsUl1Sp57DQYnCNAVUaZJMp5mCiDZlE+htJmfZuSLJInSugx7LDLlnE+ZB8+fXU35o+IuI5Sf1d+8iqUmdPleUr3sT5xAkwOQsIvZu1NfZzRBxUQEERqbYB5F3Axq0hRzMPSyyi0qsqMtEFzpzXBa8aIetv7HzvWF1vE/GqQG+Au1RHQCOBkMyRXtRjOE90QPdRM+dFU0ajSXAi8j6r4jNF91dsAhjTjA2dDCMJghHJFJOh8tk2+PVH9J4pbv727DV5FrjM4m4LvMmrangDwqtqW6F9WDKtn2jZEKm6si9RA8ZmGs/OO2GLot8W+r8hsTPofBilwIB6lUZSSlDi4JABzJOVnoj6hgDjPJCNlxv9fHZEG75xlFHDmv/AZRkxfYUnSdJN/KHFoqHp0yByVcd6mgT/TFl5VDIgenYm3o27yQx/WD4/TQqZNfIAAObm6BCvpVlg6x8ZitWDHlGa3Z7EpQ0nCkwHfHeeK1Aek2CYT0F8eVQaUVYeJL4wHHsq2kfCl3aAszizi50Jqvi8ULEtg75HOCTO/NqPWprt0wsiDrxObh6Zzt6aULeKMWSA7E1KGcf6dr59Yd5eI7GbBh468Sl4eTa+tKFHIGW2SJY="
+  - secure: "lSmZTryzLp0DaN42gRxrghAYERWRXcV105goJjiUYtiKf48Kn8zRdr2+0Q4K6Jf2uMnqyOwknvhNBBO3gWGNSgz/kPuxV+TtzhF6gjm/S/dXtozI/ffwryCpjN93O094GzNla0M01MNmwOmI8xNgg0IuSEc1QOP/KwVbXgnMoqF95W/pNprKPyDF2mqOdTAH52NX7Z+pTCgU2yL9XABEa+7YqfB4LhoqyQpBBIAt6ucIXSnZLmdgDzAP8N/OuDUFjfWvMAceJjbYv/rYIXYmaRzsgjips3ZZ7r8MjPnDy/WK5y1ChD+pQfBHz/islUGhBdfdtk4V5jo6MAFh2i9/kwnwk4al34CdpN3ULOp2AcsuGqw9VOChRaUYGjdbgEm+TgH2YPhDHSdMN2PrjsYseuJVYrfq5RnsHL7oZqSr+0CfKCZnAEI7/EC93LXnmhypebZNH6rFRT7t42/m6nV6qBixCi/79rE8tDf4NkJ93g7ayyhpQA4rJ9PqK4c9KcFZx1G/6QMWTEO0O3LU/wRswv5YJPK4az8kkYMa6o4oIktmrS9cdOhiBntmTW8pDXLcpjRo+vQ3aNka6L+fdE2oas00SWPBskzw9vut8g2QvdDh/IwI8CRsctyw8yvU/kghV3keM1ifIYImGsin05Fb2I/J+rC2gjevQ861yLxP5Rw="
+
+  matrix:
+  - TEST_SUITE=two-tier-vpc
+  - TEST_SUITE=three-tier-rds
+
+install:
+- pushd $TEST_SUITE && bundle install && popd
+- mkdir -p "$TRAVIS_BUILD_DIR/bin"
+- mkdir -p "$TRAVIS_BUILD_DIR/tmp"
+- if ! terraform version ; then
+    pushd "$TMPDIR" ;
+    curl -sSL
+      -o terraform.zip
+      "https://releases.hashicorp.com/terraform/0.8.3/terraform_0.8.3_linux_amd64.zip" ;
+    unzip terraform.zip ;
+    mv -v terraform "$TRAVIS_BUILD_DIR/bin/terraform" ;
+    chmod +x "$TRAVIS_BUILD_DIR/bin/terraform" ;
+    popd ;
+    terraform version ;
+  fi
+- if ! terragrunt version ; then
+    pushd "$TMPDIR" ;
+    curl -sSL
+      -o terragrunt
+      "https://github.com/gruntwork-io/terragrunt/releases/download/v0.9.2/terragrunt_linux_amd64" ;
+    mv -v terragrunt "$TRAVIS_BUILD_DIR/bin/terragrunt" ;
+    chmod +x "$TRAVIS_BUILD_DIR/bin/terragrunt" ;
+    popd ;
+    terragrunt version ;
+  fi
+script:
+- pushd $TEST_SUITE
+- terragrunt get
+- terragrunt plan
+- terragrunt apply
+- bundle exec rake spec
+after_script:
+- terragrunt destroy -force
