@@ -6,7 +6,7 @@ class EC2Finder
     def self.GetIdFromName(name)
         instances = Array.new
         # Filter the ec2 instances for name and state pending or running
-        ec2 = Aws::EC2::Resource.new(region: ENV['AWS_REGION'])
+        ec2 = Aws::EC2::Resource.new(region: ENV['AWS_DEFAULT_REGION'])
         ec2.instances({filters: [
             {name: 'tag:Name', values: [name]},
             {name: 'instance-state-name', values: [ 'pending', 'running']}

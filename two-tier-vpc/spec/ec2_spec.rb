@@ -1,4 +1,5 @@
 require 'awspec'
+require 'ec2_helper'
 
 describe ec2(EC2Finder.GetIdFromName('twotiertest-jumpbox')) do
   it { should exist }
