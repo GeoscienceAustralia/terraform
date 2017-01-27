@@ -1,7 +1,7 @@
 resource "aws_route53_health_check" "child" {
   fqdn              = "${var.target}.${var.target_hosted_zone_id}"
   port              = "${var.health_check_port}"
-  type              = "HTTP"
+  type              = "${var.health_check_protocol}"
   resource_path     = "/"
   failure_threshold = "${var.failure_threshold}"
   request_interval  = "${var.request_interval}"

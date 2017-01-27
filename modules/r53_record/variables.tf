@@ -16,6 +16,10 @@ variable "health_check_port" {
   default = "80"
 }
 
+variable "health_check_protocol" {
+  default = "http"
+}
+
 variable "failure_threshold" {
   default = "5"
 }
