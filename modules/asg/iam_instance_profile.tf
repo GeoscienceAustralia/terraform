@@ -44,6 +44,7 @@ resource "aws_iam_role" "s3_readonly_role" {
       "Effect": "Allow",
       "Sid": ""
     }
+  ]
 }
 EOF
 }
