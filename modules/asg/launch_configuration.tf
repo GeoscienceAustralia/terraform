@@ -39,7 +39,7 @@ resource "aws_iam_role" "s3_readonly_role" {
         "s3:Get*",
         "s3:List*"
       ],
-      "Resource": "arn:aws:s3:::${var.bucket}"
+      "Resource": "arn:aws:s3:::${var.bucket_name}"
     }
   ]
 
