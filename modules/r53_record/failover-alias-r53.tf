@@ -1,8 +1,10 @@
 resource "aws_route53_health_check" "child" {
+  # If health_check_protocol != T* (TCP)
+  count             = "${replace(replace(var.health_check_protocol, "/^[^T].*/", "1"), "/^T.*$/", "0")}"
   fqdn              = "${var.target}.${var.target_hosted_zone_id}"
   port              = "${var.health_check_port}"
   type              = "${var.health_check_protocol}"
-  resource_path     = "/"
+  resource_path     = "${var.health_check_protocol == TCP ? "" : "/"}"
   failure_threshold = "${var.failure_threshold}"
   request_interval  = "${var.request_interval}"
 
@@ -15,10 +17,30 @@ resource "aws_route53_health_check" "child" {
   }
 }
 
+resource "aws_route53_health_check" "tcp_child" {
+  # If health_check_protocol == T* (TCP)
+  count             = "${replace(replace(var.health_check_protocol, "/^[^T].*/", "0"), "/^T.*$/", "1")}"
+  fqdn              = "${var.target}.${var.target_hosted_zone_id}"
+  port              = "${var.health_check_port}"
+  type              = "TCP"
+  failure_threshold = "${var.failure_threshold}"
+  request_interval  = "${var.request_interval}"
+
+  tags = {
+    Name        = "${var.stack_name}_tcp_child_health_check"
+    owner       = "${var.owner}"
+    stack_name  = "${var.stack_name}"
+    environment = "${var.environment}"
+    terraform   = "true"
+  }
+}
+
 resource "aws_route53_health_check" "check" {
   type                   = "CALCULATED"
   child_health_threshold = 1
-  child_healthchecks     = ["${aws_route53_health_check.child.id}"]
+
+  # If TCP use the TCP health check, otherwise use child.
+  child_healthchecks = ["${var.health_check_protocol == TCP ? aws_route53_health_check.tcp_child.id : aws_route53_health_check.child.id}"]
 
   tags = {
     Name        = "${var.stack_name}_r53_health_check"
