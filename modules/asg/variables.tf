@@ -64,3 +64,7 @@ variable "key_name" {}
 variable "port_num" {
   default = "80"
 }
+
+variable "bucket_name" {
+  default = "0"
+}
