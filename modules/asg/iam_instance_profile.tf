@@ -1,7 +1,7 @@
 # The Profile we attach to the launch config
 resource "aws_iam_instance_profile" "read_bucket" {
   name  = "${var.stack_name}_instance_profile"
-  roles = ["${aws_iam_role.s3_readonly_role.arn}"]
+  roles = ["${aws_iam_role.s3_readonly_role.id}"]
 }
 
 # The policy to allow access to the bucket
