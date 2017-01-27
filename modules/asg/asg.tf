@@ -42,20 +42,3 @@ resource "aws_autoscaling_group" "asg" {
     propagate_at_launch = "true"
   }
 }
-
-resource "aws_lifecycle_hook" "initial_hook" {
-  name                   = "${var.stack_name}_initial_hook"
-  autoscaling_group_name = "${aws_autoscaling_group.asg.name}"
-  default_result         = "CONTINUE"
-  heartbeat_timeout      = 2000
-  lifecycle_transition   = "autoscaling:EC2_INSTANCE_LAUNCHING"
-
-  notification_metadata = <<EOF
-{
-  "foo": "bar"
-}
-EOF
-
-  notification_target_arn = "arn:aws:sqs:us-east-1:444455556666:queue1*"
-  role_arn                = "arn:aws:iam::123456789012:role/S3Access"
-}
