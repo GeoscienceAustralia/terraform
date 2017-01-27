@@ -4,9 +4,9 @@ resource "aws_elb" "elb" {
 
   listener {
     instance_port     = "${var.port_num}"
-    instance_protocol = "http"
+    instance_protocol = "${var.elb_protocol}"
     lb_port           = "${var.port_num}"
-    lb_protocol       = "http"
+    lb_protocol       = "${var.elb_protocol}"
   }
 
   health_check {

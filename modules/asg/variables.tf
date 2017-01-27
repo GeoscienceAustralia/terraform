@@ -65,6 +65,10 @@ variable "port_num" {
   default = "80"
 }
 
+variable "elb_protocol" {
+  default = "http"
+}
+
 variable "bucket_name" {
   default = "0"
 }
