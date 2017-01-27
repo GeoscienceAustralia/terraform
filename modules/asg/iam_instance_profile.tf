@@ -1,13 +1,14 @@
 # The Profile we attach to the launch config
 resource "aws_iam_instance_profile" "read_bucket" {
   name  = "${var.stack_name}_instance_profile"
-  roles = ["${var.bucket_name != "0" ? aws_iam_role.s3_readonly_role.arn : ""}"]
+  roles = ["${aws_iam_role.s3_readonly_role.arn}"]
 }
 
 # The policy to allow access to the bucket
 resource "aws_iam_role_policy" "s3_readonly_policy" {
-  name = "${stack_name}_s3_policy"
-  role = "${aws_iam_role.s3_readonly_role.id}"
+  count = "${replace(var.bucket_name, "/^[^0].*/", "1")}"
+  name  = "${var.stack_name}_s3_policy"
+  role  = "${aws_iam_role.s3_readonly_role.id}"
 
   policy = <<EOF
 {
@@ -28,9 +29,8 @@ EOF
 
 # The Role itself
 resource "aws_iam_role" "s3_readonly_role" {
-  count = "${replace(var.bucket_name, "/^[^0].*/", "1")}"
-  name  = "${var.stack_name}_s3_readonly_role"
-  path  = "/"
+  name = "${var.stack_name}_s3_readonly_role"
+  path = "/"
 
   assume_role_policy = <<EOF
 {
