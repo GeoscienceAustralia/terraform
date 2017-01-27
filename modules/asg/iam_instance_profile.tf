@@ -12,7 +12,7 @@ resource "aws_iam_role_policy" "s3_readonly_policy" {
 
   policy = <<EOF
 {
-  "Version": "2017-01-27",
+  "Version": "2012-10-17",
   "Statement": [
     {
       "Effect": "Allow",
@@ -34,7 +34,7 @@ resource "aws_iam_role" "s3_readonly_role" {
 
   assume_role_policy = <<EOF
 {
-  "Version": "2017-01-27",
+  "Version": "2012-10-17",
   "Statement": [
     {
       "Action": "sts:AssumeRole",
