@@ -25,7 +25,7 @@ resource "aws_iam_instance_profile" "read_bucket" {
 }
 
 resource "aws_iam_role" "s3_readonly_role" {
-  count = "${replace("/^[^0].*/", "1")}"
+  count = "${replace(var.bucket_name, "/^[^0].*/", "1")}"
   name  = "${var.stack_name}_s3_readonly_role"
   path  = "/"
 
