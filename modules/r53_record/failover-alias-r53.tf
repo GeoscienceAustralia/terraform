@@ -40,7 +40,7 @@ resource "aws_route53_health_check" "check" {
   child_health_threshold = 1
 
   # If TCP use the TCP health check, otherwise use child.
-  child_healthchecks = ["${element([aws_route53_health_check.child.id, aws_route53_health_check.tcp_child.id],replace(replace(var.health_check_protocol, "/^[^T].*/", "0"), "/^T.*$/", "1")"]
+  child_healthchecks = ["${element([aws_route53_health_check.child.id, aws_route53_health_check.tcp_child.id],replace(replace(var.health_check_protocol, "/^[^T].*/", "0"), "/^T.*$/", "1")}"]
 
   tags = {
     Name        = "${var.stack_name}_r53_health_check"
