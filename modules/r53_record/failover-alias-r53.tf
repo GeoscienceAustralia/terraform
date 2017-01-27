@@ -4,7 +4,7 @@ resource "aws_route53_health_check" "child" {
   fqdn              = "${var.target}.${var.target_hosted_zone_id}"
   port              = "${var.health_check_port}"
   type              = "${var.health_check_protocol}"
-  resource_path     = "${var.health_check_protocol == TCP ? "" : "/"}"
+  resource_path     = "/"
   failure_threshold = "${var.failure_threshold}"
   request_interval  = "${var.request_interval}"
 
@@ -40,7 +40,7 @@ resource "aws_route53_health_check" "check" {
   child_health_threshold = 1
 
   # If TCP use the TCP health check, otherwise use child.
-  child_healthchecks = ["${var.health_check_protocol == TCP ? aws_route53_health_check.tcp_child.id : aws_route53_health_check.child.id}"]
+  child_healthchecks = ["${var.health_check_protocol == "TCP" ? aws_route53_health_check.tcp_child.id : aws_route53_health_check.child.id}"]
 
   tags = {
     Name        = "${var.stack_name}_r53_health_check"
