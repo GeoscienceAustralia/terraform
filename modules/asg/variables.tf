@@ -69,6 +69,10 @@ variable "elb_protocol" {
   default = "HTTP"
 }
 
+variable "elb_check_path" {
+  default = "/"
+}
+
 variable "bucket_name" {
   default = "0"
 }
