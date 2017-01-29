@@ -13,7 +13,7 @@ resource "aws_elb" "elb" {
     healthy_threshold   = 2
     unhealthy_threshold = 2
     timeout             = 30
-    target              = "HTTP:${var.port_num}/"
+    target              = "${var.elb_protocol:var.port_num}/"
     interval            = 60
   }
 
