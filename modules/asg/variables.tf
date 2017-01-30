@@ -73,6 +73,14 @@ variable "elb_check_path" {
   default = "/"
 }
 
+variable "port_num_two" {
+  default = "443"
+}
+
+variable "elb_protocol_two" {
+  default = "HTTPS"
+}
+
 variable "bucket_name" {
   default = "0"
 }

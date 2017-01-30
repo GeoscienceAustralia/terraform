@@ -9,6 +9,13 @@ resource "aws_elb" "elb" {
     lb_protocol       = "${var.elb_protocol}"
   }
 
+  listener {
+    instance_port     = "${var.port_num_two}"
+    instance_protocol = "${var.elb_protocol_two}"
+    lb_port           = "${var.port_num_two}"
+    lb_protocol       = "${var.elb_protocol_two}"
+  }
+
   health_check {
     healthy_threshold   = 2
     unhealthy_threshold = 2
