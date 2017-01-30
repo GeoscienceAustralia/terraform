@@ -4,7 +4,7 @@
 resource "aws_route53_health_check" "child" {
   # If health_check_protocol != T* (TCP)
   count             = "${replace(replace(var.health_check_protocol, "/^[^T].*/", "1"), "/^T.*$/", "0")}"
-  fqdn              = "${var.target}.${var.target_hosted_zone_id}"
+  fqdn              = "${var.target}"
   port              = "${var.health_check_port}"
   type              = "${var.health_check_protocol}"
   resource_path     = "/"
@@ -64,7 +64,7 @@ resource "aws_route53_record" "failover_alias_route" {
 resource "aws_route53_health_check" "tcp_child" {
   # If health_check_protocol == T* (TCP)
   count             = "${replace(replace(var.health_check_protocol, "/^[^T].*/", "0"), "/^T.*$/", "1")}"
-  fqdn              = "${var.target}.${var.target_hosted_zone_id}"
+  fqdn              = "${var.target}"
   port              = "${var.health_check_port}"
   type              = "TCP"
   failure_threshold = "${var.failure_threshold}"
