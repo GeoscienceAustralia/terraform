@@ -9,7 +9,7 @@ variable "target_hosted_zone_id" {
 
 // Failover Alias
 variable "failover_policy" {
-  default = "placeholder"
+  default = "PRIMARY"
 }
 
 variable "health_check_port" {
