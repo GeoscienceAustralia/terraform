@@ -39,6 +39,9 @@ resource "aws_route53_health_check" "tcp_child" {
 }
 
 resource "aws_route53_health_check" "check" {
+  # if record_type.beginsWith('f') && health_check_protocol.beginsWith('T')
+  count = "${replace(replace(var.record_type, "/^[^f].*/", "0"), "/^f.*$/", "1") * replace(replace(var.health_check_protocol, "/^[^T].*/", "0"), "/^T.*$/", "1")}"
+
   type                   = "CALCULATED"
   child_health_threshold = 1
 
