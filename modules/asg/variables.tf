@@ -61,26 +61,14 @@ variable "owner" {}
 
 variable "key_name" {}
 
-variable "port_num" {
-  default = "80"
-}
-
-variable "elb_protocol" {
-  default = "HTTP"
-}
-
 variable "elb_check_path" {
   default = "/"
 }
 
-variable "port_num_two" {
-  default = "443"
-}
-
-variable "elb_protocol_two" {
-  default = "HTTPS"
-}
-
 variable "bucket_name" {
   default = "0"
+}
+
+variable "listeners" {
+  type = "list"
 }

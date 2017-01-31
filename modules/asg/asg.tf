@@ -10,7 +10,7 @@ resource "aws_autoscaling_group" "asg" {
   wait_for_elb_capacity = false
   force_delete          = true
   launch_configuration  = "${aws_launch_configuration.lc.name}"
-  load_balancers        = ["${aws_elb.elb.name}"]
+  load_balancers        = ["${coalesce(join("",aws_elb.elb_one.*.name),join("",aws_elb.elb_two.*.name))}"]
 
   tag {
     key                 = "Name"
