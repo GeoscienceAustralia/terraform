@@ -1,4 +1,4 @@
-output "simple_fqdn" {
+output "fqdn" {
   value = "${aws_route53_record.simple.fqdn}"
 }
 

@@ -3,15 +3,15 @@ output "asg_id" {
 }
 
 output "elb_name" {
-  value = "${aws_elb.elb.name}"
+  value = "${aws_elb.elb_one.name}"
 }
 
 output "elb_dns_name" {
-  value = "${aws_elb.elb.dns_name}"
+  value = "${aws_elb.elb_one.dns_name}"
 }
 
 output "elb_dns_hosted_zone" {
-  value = "${aws_elb.elb.zone_id}"
+  value = "${aws_elb.elb_one.zone_id}"
 }
 
 output "webapp_lc_id" {

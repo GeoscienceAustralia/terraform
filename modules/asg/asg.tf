@@ -1,38 +1,44 @@
 resource "aws_autoscaling_group" "asg" {
   lifecycle {
-      create_before_destroy   = true
+    create_before_destroy = true
   }
-  vpc_zone_identifier         = ["${var.private_subnet_ids}"]
-  name                        = "${var.stack_name}_asg"
-  min_size                    = "${var.asg_min}"
-  max_size                    = "${var.asg_max}"
-  wait_for_elb_capacity       = false
-  force_delete                = true
-  launch_configuration        = "${aws_launch_configuration.lc.name}"
-  load_balancers              = ["${aws_elb.elb.name}"]
+
+  vpc_zone_identifier   = ["${var.private_subnet_ids}"]
+  name                  = "${var.stack_name}_asg"
+  min_size              = "${var.asg_min}"
+  max_size              = "${var.asg_max}"
+  wait_for_elb_capacity = false
+  force_delete          = true
+  launch_configuration  = "${aws_launch_configuration.lc.name}"
+  load_balancers        = ["${coalesce(join("",aws_elb.elb_one.*.name),join("",aws_elb.elb_two.*.name))}"]
+
   tag {
-      key                     = "Name"
-      value                   = "${var.stack_name}_asg"
-      propagate_at_launch     = "true"
+    key                 = "Name"
+    value               = "${var.stack_name}_asg"
+    propagate_at_launch = "true"
   }
+
   tag {
-      key                     = "owner"
-      value                   = "${var.owner}"
-      propagate_at_launch     = "true"
+    key                 = "owner"
+    value               = "${var.owner}"
+    propagate_at_launch = "true"
   }
+
   tag {
-      key                     = "environment"
-      value                   = "${var.environment}"
-      propagate_at_launch     = "true"
+    key                 = "environment"
+    value               = "${var.environment}"
+    propagate_at_launch = "true"
   }
+
   tag {
-      key                     = "stack_name"
-      value                   = "${var.stack_name}"
-      propagate_at_launch     = "true"
+    key                 = "stack_name"
+    value               = "${var.stack_name}"
+    propagate_at_launch = "true"
   }
+
   tag {
-      key                     = "created_by"
-      value                   = "terraform"
-      propagate_at_launch     = "true"
+    key                 = "created_by"
+    value               = "terraform"
+    propagate_at_launch = "true"
   }
 }
