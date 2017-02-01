@@ -7,11 +7,17 @@ output "elb_name" {
 }
 
 output "elb_dns_name" {
-  value = "${aws_elb.elb_one.dns_name}"
+  value = "${coalesce(
+    join("", aws_elb.elb_one.*.dns_name),
+    join("",  aws_elb.elb_two.*.dns_name)
+  )}"
 }
 
 output "elb_dns_hosted_zone" {
-  value = "${aws_elb.elb_one.zone_id}"
+  value = "${coalesce(
+    join("", aws_elb.elb_one.*.zone_id),
+    join("",  aws_elb.elb_two.*.zone_id)
+  )}"
 }
 
 output "webapp_lc_id" {
