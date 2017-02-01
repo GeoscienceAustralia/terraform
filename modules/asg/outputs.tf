@@ -7,6 +7,7 @@ output "elb_name" {
 }
 
 output "elb_dns_name" {
+  # Return the dns_name of whichever elb was created
   value = "${coalesce(
     join("", aws_elb.elb_one.*.dns_name),
     join("",  aws_elb.elb_two.*.dns_name)
@@ -14,6 +15,7 @@ output "elb_dns_name" {
 }
 
 output "elb_dns_hosted_zone" {
+  # Return the zone_id of whichever elb was created
   value = "${coalesce(
     join("", aws_elb.elb_one.*.zone_id),
     join("",  aws_elb.elb_two.*.zone_id)
