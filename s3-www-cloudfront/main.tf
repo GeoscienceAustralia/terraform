@@ -23,5 +23,4 @@ module "cloudfront_distribution" {
   source      = "./cloudfront"
   bucket_name = "${var.bucket_name}"
   owner       = "${var.owner}"
-  origin_id   = "${var.origin_id}"
 }

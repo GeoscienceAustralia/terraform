@@ -1,7 +1,7 @@
 resource "aws_cloudfront_distribution" "www" {
   origin {
     domain_name = "${var.bucket_name}.s3.amazonaws.com"
-    origin_id   = "${var.origin_id}"
+    origin_id   = "wwwS3Origin"
 
     s3_origin_config {
       origin_access_identity = "${aws_cloudfront_origin_access_identity.origin_access_identity.cloudfront_access_identity_path}"
@@ -16,7 +16,7 @@ resource "aws_cloudfront_distribution" "www" {
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = "${var.origin_id}"
+    target_origin_id = "wwwS3Origin"
 
     forwarded_values {
       query_string = false
@@ -28,8 +28,8 @@ resource "aws_cloudfront_distribution" "www" {
 
     viewer_protocol_policy = "allow-all"
     min_ttl                = 0
-    default_ttl            = 0
-    max_ttl                = 0
+    default_ttl            = 300
+    max_ttl                = 86400
   }
 
   restrictions {
