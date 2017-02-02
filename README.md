@@ -7,7 +7,7 @@ Individual modules can be referenced from terraform files using `source = "githu
 
 ## Contents
 
-* **s3-www-cloudfront** (Development in Progress)
+* **s3-www-cloudfront**
 * **three-tier-rds**
 * **two-tier-rds**
 

@@ -11,6 +11,7 @@ env:
   matrix:
   - TEST_SUITE=two-tier-vpc
   - TEST_SUITE=three-tier-rds
+  - TEST_SUITE=s3-www-cloudfront
 
 install:
 - pushd $TEST_SUITE && bundle install && popd
