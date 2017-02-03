@@ -21,7 +21,7 @@ install:
     pushd "$TMPDIR" ;
     curl -sSL
       -o terraform.zip
-      "https://releases.hashicorp.com/terraform/0.8.3/terraform_0.8.3_linux_amd64.zip" ;
+      "https://releases.hashicorp.com/terraform/0.8.5/terraform_0.8.5_linux_amd64.zip" ;
     unzip terraform.zip ;
     mv -v terraform "$TRAVIS_BUILD_DIR/bin/terraform" ;
     chmod +x "$TRAVIS_BUILD_DIR/bin/terraform" ;
@@ -32,7 +32,7 @@ install:
     pushd "$TMPDIR" ;
     curl -sSL
       -o terragrunt
-      "https://github.com/gruntwork-io/terragrunt/releases/download/v0.9.2/terragrunt_linux_amd64" ;
+      "https://github.com/gruntwork-io/terragrunt/releases/download/v0.9.6/terragrunt_linux_amd64" ;
     mv -v terragrunt "$TRAVIS_BUILD_DIR/bin/terragrunt" ;
     chmod +x "$TRAVIS_BUILD_DIR/bin/terragrunt" ;
     popd ;
