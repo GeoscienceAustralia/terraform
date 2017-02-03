@@ -11,14 +11,16 @@
 provider "aws" {
   region = "${var.region}"
 }
+
 module "s3_bucket" {
-  source = "./s3"
-  bucket_name = "${var.bucket_name}"
-  owner = "${var.owner}"
+  source               = "./s3"
+  bucket_name          = "${var.bucket_name}"
+  owner                = "${var.owner}"
+  s3_canonical_user_id = "${module.cloudfront_distribution.s3_canonical_user_id}"
 }
+
 module "cloudfront_distribution" {
-  source = "./cloudfront"
+  source      = "./cloudfront"
   bucket_name = "${var.bucket_name}"
-  owner = "${var.owner}"
-  origin_id = "${var.origin_id}"
+  owner       = "${var.owner}"
 }
