@@ -25,3 +25,7 @@ variable "availability_zones" {
 variable "key_name" {
   default = "INSERT_YOUR_KEYPAIR_HERE"
 }
+
+variable "filepath" {
+  default = "./files/SampleApp_Linux.zip"
+}

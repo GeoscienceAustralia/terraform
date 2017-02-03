@@ -11,3 +11,7 @@ variable "environment" {
 }
 
 variable "asg_id" {}
+
+variable "key_name" {}
+
+variable "filepath" {}

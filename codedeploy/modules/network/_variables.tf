@@ -39,12 +39,12 @@ variable "instance_type" {
 }
 
 variable "asg_min" {
-  default     = "1"
+  default     = "2"
   description = "Minimum number of instances"
 }
 
 variable "asg_max" {
-  default     = "2"
+  default     = "4"
   description = "Maximum number of instances"
 }
 

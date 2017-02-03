@@ -15,6 +15,7 @@ resource "aws_iam_role_policy" "codedeploy_policy" {
                 "autoscaling:DescribeLifecycleHooks",
                 "autoscaling:PutLifecycleHook",
                 "autoscaling:RecordLifecycleActionHeartbeat",
+                "cloudwatch:DescribeAlarms",
                 "ec2:DescribeInstances",
                 "ec2:DescribeInstanceStatus",
                 "tag:GetTags",
