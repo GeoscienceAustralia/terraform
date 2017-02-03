@@ -4,7 +4,7 @@ resource "aws_autoscaling_group" "asg" {
   }
 
   vpc_zone_identifier   = ["${var.private_subnet_ids}"]
-  name                  = "${var.stack_name}_asg"
+  name                  = "${var.stack_name}_${aws_launch_configuration.lc.name}_asg"
   min_size              = "${var.asg_min}"
   max_size              = "${var.asg_max}"
   wait_for_elb_capacity = false
