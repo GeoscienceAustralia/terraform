@@ -5,7 +5,8 @@ provider "aws" {
 module "network" {
   source = "./modules/network"
 
-  key_name = "${var.key_name}"
+  key_name       = "${var.key_name}"
+  enable_jumpbox = "1"
 
   # The first listener has the health check
   listeners {
@@ -16,9 +17,10 @@ module "network" {
   }
 
   # Tags
-  stack_name  = "${var.stack_name}"
-  environment = "${var.environment}"
-  owner       = "${var.owner}"
+  stack_name   = "${var.stack_name}"
+  environment  = "${var.environment}"
+  owner        = "${var.owner}"
+  start_script = "${var.filepath}"
 }
 
 module "codedeploy" {
@@ -26,8 +28,7 @@ module "codedeploy" {
 
   key_name = "${var.key_name}"
 
-  asg_id   = "${module.network.asg_id}"
-  filepath = "${var.filepath}"
+  asg_id = "${module.network.asg_id}"
 
   # Tags
   stack_name  = "${var.stack_name}"

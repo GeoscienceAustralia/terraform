@@ -3,14 +3,16 @@ resource "aws_autoscaling_group" "asg" {
     create_before_destroy = true
   }
 
-  vpc_zone_identifier   = ["${aws_subnet.private.*.id}"]
-  name                  = "${var.stack_name}_asg"
-  min_size              = "${var.asg_min}"
-  max_size              = "${var.asg_max}"
-  wait_for_elb_capacity = false
-  force_delete          = true
-  launch_configuration  = "${aws_launch_configuration.lc.name}"
-  load_balancers        = ["${aws_elb.elb_one.name}"]
+  vpc_zone_identifier       = ["${aws_subnet.private.*.id}"]
+  name                      = "${var.stack_name}_asg"
+  min_size                  = "${var.asg_min}"
+  max_size                  = "${var.asg_max}"
+  wait_for_elb_capacity     = false
+  force_delete              = true
+  launch_configuration      = "${aws_launch_configuration.lc.name}"
+  load_balancers            = ["${aws_elb.elb_one.name}"]
+  health_check_grace_period = "300"
+  health_check_type         = "ELB"
 
   tag {
     key                 = "Name"

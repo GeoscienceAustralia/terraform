@@ -27,7 +27,7 @@ variable "web_port" {
 # ASG
 variable "asg_amis" {
   default = {
-    "ap-southeast-2" = "ami-4d3b062e"
+    "ap-southeast-2" = "ami-1c47407f"
   }
 
   description = "AMI to be used in the ASG"
@@ -47,6 +47,8 @@ variable "asg_max" {
   default     = "4"
   description = "Maximum number of instances"
 }
+
+variable "start_script" {}
 
 # VPC variables
 variable "vpc_cidr" {
@@ -70,6 +72,10 @@ variable "nat_gw_count" {
 }
 
 variable "key_name" {}
+
+variable "enable_jumpbox" {
+  default = "0"
+}
 
 #Tags
 variable "stack_name" {}

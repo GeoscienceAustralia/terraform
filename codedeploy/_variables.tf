@@ -23,9 +23,9 @@ variable "availability_zones" {
 }
 
 variable "key_name" {
-  default = "INSERT_YOUR_KEYPAIR_HERE"
+  default = "pipeline"
 }
 
 variable "filepath" {
-  default = "./files/SampleApp_Linux.zip"
+  default = "./files/userdata.sh"
 }

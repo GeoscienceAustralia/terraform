@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Disable busybox if it's running
+isExistApp = `pgrep busybox`
+if [[ -n  $isExistApp ]]; then
+    kill $(pgrep busybox)      
+fi
+
+# Prep for app
+apt-get install -y apache2
+mkdir /opt/codedeploy/
