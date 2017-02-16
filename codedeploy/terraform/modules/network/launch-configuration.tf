@@ -15,6 +15,7 @@ resource "aws_launch_configuration" "lc" {
   user_data                   = "${file(var.start_script)}"
   key_name                    = "${var.key_name}"
   associate_public_ip_address = true
+  iam_instance_profile        = "${aws_iam_instance_profile.instance_profile.id}"
 }
 
 resource "aws_security_group" "app_outbound_sg" {

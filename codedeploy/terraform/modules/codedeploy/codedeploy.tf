@@ -40,12 +40,6 @@ resource "aws_codedeploy_deployment_group" "update_group" {
   autoscaling_groups     = ["${var.asg_id}"]
 
   auto_rollback_configuration {
-    enabled = true
-    events  = ["DEPLOYMENT_FAILURE"]
-  }
-
-  alarm_configuration {
-    alarms  = ["update-alarm"]
-    enabled = true
+    enabled = false
   }
 }

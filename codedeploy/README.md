@@ -6,7 +6,10 @@ This will create:
  * An elastic load-balancer
  * A VPC with a NAT gateway
  * A CodeDeploy app
- * An s3 bucket with an example CodeDeloy Release
+
+### Required
+ * A space you have control over
+ * A bucket to store your releases in
 
 ### Set Variables
 
@@ -30,7 +33,18 @@ Run these commands for **Terraform**:
 3. terragrunt apply
 
 ### Deploy Release
-After you have built the infrastructure, you will need to deploy the app
+After you have built the infrastructure, you will need to create a revision
 ```
 aws deploy push --application-name codedeploy-dev \
---s3-location 
+--s3-location s3://<yourbucketname>/SampleApp.zip \
+--source ./files/SampleApp_Linux
+```
+
+Then deploy the app 
+```
+aws deploy create-deployment --application-name codedeploy-dev \
+--s3-location bucket=<yourbucketname>,key=SampleApp.zip,bundleType=zip,eTag=<get this number from the command above> \
+--deployment-group-name create \
+--deployment-config-name CodeDeployDefault.OneAtATime \
+--description "test"
+```

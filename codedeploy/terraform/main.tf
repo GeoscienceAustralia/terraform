@@ -5,6 +5,10 @@ provider "aws" {
 module "network" {
   source = "./modules/network"
 
+  asg_amis = {
+    "ap-southeast-2" = "${var.ami_id}"
+  }
+
   key_name       = "${var.key_name}"
   enable_jumpbox = "1"
 

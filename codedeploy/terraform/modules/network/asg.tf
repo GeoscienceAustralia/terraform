@@ -61,8 +61,9 @@ resource "aws_elb" "elb_one" {
 
   health_check {
     healthy_threshold   = 2
-    unhealthy_threshold = 2
+    unhealthy_threshold = 10
     timeout             = 30
+    interval            = 300
 
     target = "${
       format("%s:%s%s",
@@ -70,8 +71,6 @@ resource "aws_elb" "elb_one" {
       lookup(var.listeners[0],"instance_port","80"),
       var.elb_check_path)
     }"
-
-    interval = 60
   }
 
   security_groups = [

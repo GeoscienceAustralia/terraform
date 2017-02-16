@@ -22,6 +22,10 @@ variable "availability_zones" {
   }
 }
 
+variable "ami_id" {
+  default = "ami-56acad35"
+}
+
 variable "key_name" {
   default = "pipeline"
 }
