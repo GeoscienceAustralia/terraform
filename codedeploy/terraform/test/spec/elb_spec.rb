@@ -1,3 +1,4 @@
+require 'awspec'
 describe elb('codedeploy-elb') do
   it { should exist }
   its(:load_balancer_name) { should eq 'codedeploy-elb' }
