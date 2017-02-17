@@ -44,6 +44,8 @@ script:
 - terragrunt get
 - terragrunt plan
 - terragrunt apply
+- cd tests
 - bundle exec rake spec
+- popd
 after_script:
 - terragrunt destroy -force
