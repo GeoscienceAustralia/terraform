@@ -46,6 +46,6 @@ script:
 - terragrunt apply
 - cd tests
 - bundle exec rake spec
-- popd
+- cd ../
 after_script:
 - terragrunt destroy -force
