@@ -15,7 +15,7 @@ env:
   - TEST_SUITE=codedeploy
 
 install:
-- pushd $TEST_SUITE && bundle install && popd
+- pushd $TEST_SUITE/tests && bundle install && popd
 - mkdir -p "$TRAVIS_BUILD_DIR/bin"
 - mkdir -p "$TRAVIS_BUILD_DIR/tmp"
 - if ! terraform version ; then
