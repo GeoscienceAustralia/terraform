@@ -10,6 +10,7 @@ This will create:
 ### Required
  * A space you have control over
  * A bucket to store your releases in
+ * A [codedeploy AMI]() in your space
 
 ### Set Variables
 
