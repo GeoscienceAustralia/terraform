@@ -7,9 +7,10 @@ Individual modules can be referenced from terraform files using `source = "githu
 
 ## Contents
 
-* **s3-www-cloudfront** (Development in Progress)
+* **s3-www-cloudfront**
 * **three-tier-rds**
 * **two-tier-rds**
+* **terraform-workshop**
 
 ## Install
 1. Download and install [awscli](https://aws.amazon.com/cli/)
