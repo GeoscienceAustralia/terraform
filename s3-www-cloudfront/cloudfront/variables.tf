@@ -2,4 +2,3 @@
 variable "bucket_name" {}
 
 variable "owner" {}
-variable "origin_id" {}
