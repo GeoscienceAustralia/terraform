@@ -1,4 +1,0 @@
-# Use the parent .terragrunt file passing it the name of this folder
-include = {
-  path = "${find_in_parent_folders()}"
-}
