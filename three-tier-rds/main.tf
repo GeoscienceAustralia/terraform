@@ -2,6 +2,17 @@ provider "aws" {
   region = "${var.region}"
 }
 
+terraform {
+  required_version = ">= 0.9.1"
+
+  backend "s3" {
+    bucket     = "ga-tf-state"
+    key        = "threetierstack/"
+    region     = "ap-southeast-2"
+    lock_table = "terraform"
+  }
+}
+
 module "vpc" {
   source         = "../modules/vpc"
   stack_name     = "${var.stack_name}"
