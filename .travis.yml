@@ -30,6 +30,7 @@ install:
   fi
 script:
 - pushd $TEST_SUITE
+- terraform init
 - terraform get
 - terraform plan
 - terraform apply
