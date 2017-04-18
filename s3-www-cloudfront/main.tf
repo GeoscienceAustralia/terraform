@@ -12,6 +12,17 @@ provider "aws" {
   region = "${var.region}"
 }
 
+terraform {
+  required_version = ">= 0.9.1"
+
+  backend "s3" {
+    bucket     = "ga-tf-state"
+    key        = "s3cfwww/"
+    region     = "ap-southeast-2"
+    lock_table = "terraform"
+  }
+}
+
 module "s3_bucket" {
   source               = "./s3"
   bucket_name          = "${var.bucket_name}"
