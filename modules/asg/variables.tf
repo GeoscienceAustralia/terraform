@@ -70,5 +70,5 @@ variable "bucket_name" {
 }
 
 variable "listeners" {
-  type = "list"
+  type = "map"
 }
