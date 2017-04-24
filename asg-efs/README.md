@@ -3,6 +3,7 @@
 This will create:
 
  * An autoscaling web server group
+ * An EFS file system with mount points across all AZs
  * An elastic load-balancer
  * A VPC with a NAT gateway and a jump host
 
