@@ -1,6 +1,6 @@
 require 'awspec'
 
-describe cloudwatch_alarm('twotiertest_high_asg_cpu') do
+describe cloudwatch_alarm('asg-efs_high_asg_cpu') do
   it { should exist }
   it { should belong_to_metric('CPUUtilization').namespace('AWS/EC2') }
   its(:statistic) { should eq 'Average' }
@@ -10,7 +10,7 @@ describe cloudwatch_alarm('twotiertest_high_asg_cpu') do
   its(:comparison_operator)  { should eq 'GreaterThanThreshold' }
 end
 
-describe cloudwatch_alarm('twotiertest_low_asg_cpu') do
+describe cloudwatch_alarm('asg-efs_low_asg_cpu') do
   it { should exist }
   it { should belong_to_metric('CPUUtilization').namespace('AWS/EC2') }
   its(:statistic) { should eq 'Average' }

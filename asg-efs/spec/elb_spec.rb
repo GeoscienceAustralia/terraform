@@ -1,6 +1,6 @@
-describe elb('twotiertest-elb') do
+describe elb('asg-efs-elb') do
   it { should exist }
-  its(:load_balancer_name) { should eq 'twotiertest-elb' }
+  its(:load_balancer_name) { should eq 'asg-efs-elb' }
   its(:health_check_target) { should eq 'HTTP:80/' }
   its(:health_check_interval) { should eq 60 }
   its(:health_check_timeout) { should eq 30 }
