@@ -22,7 +22,7 @@ install:
     pushd "$TMPDIR" ;
     curl -sSL
       -o terraform.zip
-      "https://releases.hashicorp.com/terraform/0.9.2/terraform_0.9.2_linux_amd64.zip" ;
+      "https://releases.hashicorp.com/terraform/0.9.3/terraform_0.9.3_linux_amd64.zip" ;
     unzip terraform.zip ;
     mv -v terraform "$TRAVIS_BUILD_DIR/bin/terraform" ;
     chmod +x "$TRAVIS_BUILD_DIR/bin/terraform" ;

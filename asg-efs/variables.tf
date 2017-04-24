@@ -23,5 +23,5 @@ variable "availability_zones" {
 }
 
 variable "key_name" {
-  default = "pipeline"
+  default = "INSERT_YOUR_KEYPAIR_HERE"
 }
