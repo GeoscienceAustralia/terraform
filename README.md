@@ -10,6 +10,7 @@ Individual modules can be referenced from terraform files using `source = "githu
 * **s3-www-cloudfront**
 * **three-tier-rds**
 * **two-tier-rds**
+* **asg-efs**
 * **terraform-workshop**
 
 ## Install
