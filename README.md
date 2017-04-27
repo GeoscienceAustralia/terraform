@@ -2,7 +2,7 @@
 
 # DEPRECATED
 
-This repository is no longer under active development. Please refer to the examples on [Bitbucket](https://bitbucket.org/account/user/geoscienceaustralia/projects/TF).
+This repository is no longer under active development. Please refer to the [Terraform examples repositories](https://bitbucket.org/account/user/geoscienceaustralia/projects/TF) hosted on Bitbucket.
 
 ## Cloud Examples
 Terraform examples to be referenced at cloud.ga.gov.au.
