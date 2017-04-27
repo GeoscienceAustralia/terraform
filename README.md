@@ -4,7 +4,7 @@
 
 This repository is no longer under active development. Please refer to the examples on [Bitbucket](https://bitbucket.org/account/user/geoscienceaustralia/projects/TF).
 
-# Cloud Examples
+## Cloud Examples
 Terraform examples to be referenced at cloud.ga.gov.au.
 
 Individual modules can be referenced from terraform files using `source = "github.com/GeoscienceAustralia/terraform//modules/vpc"`
