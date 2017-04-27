@@ -1,6 +1,10 @@
 [![Build Status](https://travis-ci.org/GeoscienceAustralia/terraform.svg?branch=master)](https://travis-ci.org/GeoscienceAustralia/terraform)
 
-# Cloud Examples
+# DEPRECATED
+
+This repository is no longer under active development. Please refer to the [Terraform examples repositories](https://bitbucket.org/account/user/geoscienceaustralia/projects/TF) hosted on Bitbucket.
+
+## Cloud Examples
 Terraform examples to be referenced at cloud.ga.gov.au.
 
 Individual modules can be referenced from terraform files using `source = "github.com/GeoscienceAustralia/terraform//modules/vpc"`
