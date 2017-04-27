@@ -1,5 +1,9 @@
 [![Build Status](https://travis-ci.org/GeoscienceAustralia/terraform.svg?branch=master)](https://travis-ci.org/GeoscienceAustralia/terraform)
 
+# DEPRECATED
+
+This repository is no longer under active development. Please refer to the examples on [Bitbucket](https://bitbucket.org/account/user/geoscienceaustralia/projects/TF).
+
 # Cloud Examples
 Terraform examples to be referenced at cloud.ga.gov.au.
 
